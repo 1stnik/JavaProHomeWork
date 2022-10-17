@@ -21,7 +21,7 @@ public class AverageSumTotal {
             sum += num;
         }
         average = (double) sum / n;
-        System.out.println(average);
+        System.out.println("Average sum = " + average);
 
     }
 }
