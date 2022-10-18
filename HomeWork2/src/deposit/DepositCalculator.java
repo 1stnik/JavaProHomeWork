@@ -2,29 +2,28 @@ package deposit;
 
 public class DepositCalculator {
 
-    static DepositInfo depositInfo;
-    static double annualForYear;
-    static double sumForYear;
+    static double monthInterest;
+    static double depositSumTemp;
 
     public static void main(String[] args) {
 
-        depositInfo = new DepositInfo(64350, 12, 3);
-        calcTotalInfo();
-        calcSumForYear(depositInfo.getDepositSum(), depositInfo.getAnnualInterest());
+        double depositSum = Double.valueOf(args[0]);
+        double annualInterest = Double.valueOf(args[1]) / 12;
+        int years = Integer.valueOf(args[2]);
 
-    }
+        System.out.println("Сумма вклада: " + depositSum + " грн." + "\nСтавка в год: " +
+                Double.valueOf(args[1]) + " %" + "\nКол-во периодов (лет): " + years);
 
-    public static void calcTotalInfo () {
-        System.out.println("Сумма вклада: " + depositInfo.getDepositSum() + " грн." + "\nСтавка в год: " +
-                depositInfo.getAnnualInterest() + " %" + "\nКол-во периодов (лет): " + depositInfo.getYears());
-    }
+        monthInterest = depositSum * annualInterest / 100;
+        depositSumTemp = depositSum;
+        for(int i = 1; i <= years * 12; i++) {
+            depositSumTemp = depositSumTemp + monthInterest;
+            System.out.printf("\nНачислено за %d-й месяц: %.2f грн." +
+                    "\nСумма депозита составляет:  %.2f грн.", i, monthInterest, depositSumTemp);
+            if (i % 12 == 0)
+                System.out.printf("\nСумма депозита с процентами за %d месяцев составляет: %.2f грн.", i, depositSumTemp);
 
-    public static void calcSumForYear(double depositSum, double annualInterest) {
-        for (int i = 1; i <= depositInfo.getYears(); i++) {
-            annualForYear = depositSum * annualInterest / 100;
-            System.out.println("Сумма процентов за " + i + "-й год: " + annualForYear * i + " грн.");
-            sumForYear = depositInfo.getDepositSum() + annualForYear * i;
-            System.out.println("Сумма вклада с процентами за " + i + "-й год: " + sumForYear + " грн.");
+            monthInterest = depositSumTemp * annualInterest / 100;
         }
     }
 }
