@@ -5,7 +5,6 @@ public class DepositCalculator {
     static DepositInfo depositInfo;
     static double annualForYear;
     static double sumForYear;
-    static int count = 1;
 
     public static void main(String[] args) {
 
@@ -23,10 +22,9 @@ public class DepositCalculator {
     public static void calcSumForYear(double depositSum, double annualInterest) {
         for (int i = 1; i <= depositInfo.getYears(); i++) {
             annualForYear = depositSum * annualInterest / 100;
-            System.out.println("Сумма процентов за " + count + "-й год: " + annualForYear * count + " грн.");
-            sumForYear = depositInfo.getDepositSum() + annualForYear * count;
-            System.out.println("Сумма вклада с процентами за " + count + "-й год: " + sumForYear + " грн.");
-            count++;
+            System.out.println("Сумма процентов за " + i + "-й год: " + annualForYear * i + " грн.");
+            sumForYear = depositInfo.getDepositSum() + annualForYear * i;
+            System.out.println("Сумма вклада с процентами за " + i + "-й год: " + sumForYear + " грн.");
         }
     }
 }
