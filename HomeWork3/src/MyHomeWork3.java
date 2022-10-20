@@ -1,8 +1,91 @@
+import java.util.Scanner;
+
 public class MyHomeWork3 {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello");
+        // 1. При помощи цикла for вывести на экран нечетные числа от 1 до 99.
+        System.out.println("Task 1:");
+        for (int i = 1; i <= 99; i++) System.out.print(i + " ");
+
+        // 2. Дано число n при помощи цикла for посчитать факториал n!
+        System.out.println("\n-----------------------------------\nTask 2:");
+        int factOfNum = 1;
+        int num = 8;   // Вычисление факториала для числа <num>
+        for (int i = 1; i <= num; i++) {
+            factOfNum = factOfNum * i;
+            System.out.print(factOfNum + "  ");
+        }
+
+        // 3. Перепишите программы с использованием цикла while.
+        System.out.println("\n-----------------------------------\nTask 3:");
+        int i = 1;
+        while (i <= 99) {
+            System.out.print(i + " ");
+            i++;
+        }
+
+        System.out.print("\n");
+        factOfNum = 1;
+        i = 1;
+        while (i <= num) {
+            factOfNum = factOfNum * i;
+            i++;
+            System.out.print(factOfNum + "  ");
+        }
+
+        // 4. Перепишите программы с использованием цикла do - while.
+        System.out.println("\n-----------------------------------\nTask 4:");
+        i = 1;
+        do {
+            System.out.print(i + " ");
+            i++;
+        } while (i <= 99);
+
+        System.out.print("\n");
+        factOfNum = 1;
+        i = 1;
+        do {
+            factOfNum = factOfNum * i;
+            System.out.print(factOfNum + "  ");
+            i++;
+        } while (i <= num);
+
+        // 5. Даны переменные x и n вычислить x^n.
+        System.out.println("\n-----------------------------------\nTask 5:");
+        int x = 3;
+        int n = 5;
+        int pow = 1;
+        for (i = 0; i < n; i++) {
+            pow = pow * x;
+        }
+        System.out.println("x^n = " + pow);
+
+        // 6. Вывести 10 первых чисел последовательности 0, -5,-10,-15.
+        System.out.println("-----------------------------------\nTask 6:");
+        i = 0;
+        num = 0;
+        while (i < 10) {
+            System.out.print(num + " ");
+            i++;
+            num -= 5;
+        }
+
+        // 7. Необходимо вывести на экран таблицу умножения на Х: (любое число вводимое из консоли)
+        System.out.println("\n-----------------------------------\nTask 7:");
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Enter any number");
+        double d = scnr.nextDouble();
+        i = 1;
+        while (i <= 10) {
+            double result = i * d;
+            System.out.println(i + " * " + d + " = " + result);
+            i++;
+        }
+
+        // 8. Создайте массив, содержащий 10 первых нечетных чисел.
+        //    Выведете элементы массива на консоль в одну строку, разделяя запятой.
+        System.out.println("-----------------------------------\nTask 8:");
 
     }
 }
