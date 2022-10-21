@@ -126,8 +126,57 @@ public class MyHomeWork3 {
         }
         System.out.print(maxValue + " ");
 
+        // 11. Поменять наибольший и наименьший элементы массива местами.
+        //     Пример: дан массив {4, -5, 0, 6, 8}. После замены будет выглядеть {4, 8, 0, 6, -5}.
+        System.out.println("\n-----------------------------------\nTask 11:");
+        int[] arrSwap = new int[]{3, 4, -6, 5, 7, -1, -3, 8, 2};
+        minValue = arrSwap[0];
+        maxValue = arrSwap[0];
+        int minIndex = 0;
+        int maxIndex = 0;
 
+        for (counter = 1; counter < arrSwap.length; counter++) {
+            if (minValue > arrSwap[counter]) {
+                minValue = arrSwap[counter];
+                minIndex = counter;
+            } else if (maxValue < arrSwap[counter]) {
+                maxValue = arrSwap[counter];
+                maxIndex = counter;
+            }
+        }
+        int temp = minValue;
+        minValue = maxValue;
+        maxValue = temp; //
+        arrSwap[maxIndex] = maxValue;
+        arrSwap[minIndex] = minValue;
 
+        for (int item : arrSwap) {
+            System.out.print(item + " ");
+        }
 
-}
+        // 12. Найти среднее арифметическое всех элементов массива.
+        System.out.println("\n-----------------------------------\nTask 12:");
+        int sum = 0; // arrayForTask[] {3, 2, -4, 5, 9, -1, -4, 6, 8, 2, 9, -4, 1}
+        double averageValue = 0;
+        for (int s : arrayForTask) {
+            sum += s;
+            averageValue = (double) sum / (arrayForTask.length);
+        }
+        System.out.println("ArrayForTask averageValue = " + averageValue);
+
+        // 13. Вывести на экран шахматную доску 8х8 в виде 2-х мерного массива (W - белые клетки , B - черные клети)
+        System.out.println("-----------------------------------\nTask 13:");
+
+        int[][] arrayChess = new int[8][8];
+        for (int v = 0; v < arrayChess.length; v++) {
+            for (int g = 0; g < arrayChess.length; g++) {
+                if ((v + g) % 2 == 0) {
+                    System.out.print(" W ");
+                } else {
+                    System.out.print(" B ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }
