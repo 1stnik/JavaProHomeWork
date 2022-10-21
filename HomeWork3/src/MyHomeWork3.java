@@ -178,5 +178,20 @@ public class MyHomeWork3 {
             }
             System.out.println();
         }
+        System.out.println("\n...and one more version:\n");
+
+        char[][] arrayChars = new char[8][8];
+        for (int k = 0; k < arrayChars.length; k++) {
+            for (int l = 0; l < arrayChars.length; l++) {
+                if ((k + l) % 2== 0) {
+                    arrayChars[k][l] = 'W';
+                    System.out.print(" " + arrayChars[k][l] + " ");
+                } else {
+                    arrayChars[k][l] = 'B';
+                    System.out.print(" " + arrayChars[k][l] + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
