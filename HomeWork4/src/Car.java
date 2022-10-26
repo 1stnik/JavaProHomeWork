@@ -1,5 +1,13 @@
 import java.util.Scanner;
 
+// Arguments fo Car: 90 53 20 39.99
+// Distance:
+// Total Odesa - Kyiv -481km
+// Odesa - Krive Ozero - 179km
+// Krive Ozero - Jashkiv - 153km
+// Jashkiv - Kyiv 149km
+
+
 public class Car {
 
     static int tankVolume;
@@ -54,8 +62,8 @@ public class Car {
         System.out.println("Fuel reserve in the tank: " + fuelReserve + "L");
         fuelReserve = needToAddFuel(fuelReserve, fuelRequirement);
         System.out.println(" . . . . . . . ");
-
         // -----------------------------------------------------------------------------------------
+
         System.out.println("Now you are in Jashkiv");
         System.out.println("Enter distance from current to the end point (km): "); //from Krive Ozero to Jashkiv
         nextPointDistance = scanner.nextInt(); // 149 km
@@ -72,14 +80,14 @@ public class Car {
             scanner.close();
         }
 
-        System.out.println("Fuel reserve in the end of trip: " + fuelReserve);
+        System.out.println("Fuel reserve in the end of trip: " + fuelReserve + "L");
     }
 
     public static double calcFuelToDistance(double fuelConsumption, int distance) {
         return fuelConsumption * distance / 100; // расход топлива к пробегу
     }
 
-    public static double needToAddFuel (double fuelReserve, double fuelRequirement) {
+    public static double needToAddFuel(double fuelReserve, double fuelRequirement) {
         double tempFuelReserve = 0;
         if (fuelRequirement > fuelReserve) {
             System.out.println("You can't go. Add fuel!\nFilling up the tank full...");
@@ -90,11 +98,12 @@ public class Car {
         } else if (fuelRequirement <= fuelReserve) {
             System.out.println("Reserve of fuel enough to next point! Go!");
             tempFuelReserve = calcReserveFuelAfterDistance(fuelReserve, fuelRequirement);
-        } return tempFuelReserve;
+        }
+        return tempFuelReserve;
     }
 
     public static double calcAddFuelInTank(int tankVolume, double fuelReserve) {
-        return (tankVolume - fuelReserve)  + fuelReserve; // добавить до полного бака
+        return (tankVolume - fuelReserve) + fuelReserve; // добавить до полного бака
     }
 
     public static double calcReserveFuelAfterDistance(double fuelReserve, double fuelRequirement) {
