@@ -1,3 +1,5 @@
+package carConsumption;
+
 import java.util.Scanner;
 
 // Arguments fo Car: 90 53 20 39.99
@@ -110,3 +112,5 @@ public class Car {
         return fuelReserve - fuelRequirement; // остаток топлива после пробега
     }
 }
+
+
