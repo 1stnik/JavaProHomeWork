@@ -1,5 +1,7 @@
 package deposit;
 
+// need to add in DepositCalculator arguments: 1000 16 5 (deposit sum) / (bank percent) / (for years)
+
 public class DepositCalculator {
 
     static double monthInterest;
