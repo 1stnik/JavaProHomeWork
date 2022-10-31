@@ -1,4 +1,4 @@
-package average_sum;
+package averageSum;
 
 public class AverageSum {
 

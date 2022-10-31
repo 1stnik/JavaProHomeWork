@@ -1,4 +1,4 @@
-package average_sum_for_all_numbers;
+package averageSumForAllNumbers;
 
 public class AverageSumTotal {
 
