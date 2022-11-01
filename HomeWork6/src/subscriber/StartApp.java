@@ -2,6 +2,11 @@ package subscriber;
 
 import java.util.Scanner;
 
+/**
+ * @author Serhii Nikonenko
+ * @version 1.0.1
+ */
+
 public class StartApp {
 
     public static Scanner scanner;
@@ -12,20 +17,20 @@ public class StartApp {
         SubscriberInit subscriberInit = new SubscriberInit();
         Subscriber[] subscribers = (Subscriber[])subscriberInit.initSubscribersInfo();
 
-        SubscriberService subscriberService = new SubscriberService();
-        subscriberService.exceedingLimitLocalCalls(subscribers);
+        SubscriberServiceImpl subscriberServiceImpl = new SubscriberServiceImpl();
+        subscriberServiceImpl.exceedingLimitLocalCalls(subscribers);
 
         System.out.println("-----------------------------------------------\n");
-        subscriberService.intercityCallsUsers(subscribers);
+        subscriberServiceImpl.intercityCallsUsers(subscribers);
 
         System.out.println("-----------------------------------------------\n");
-        subscriberService.findSbscrByFirstLetterSurname(subscribers, inputFirstLetter());
+        subscriberServiceImpl.findSbscrByFirstLetterSurname(subscribers, inputFirstLetter());
 
         System.out.println("-----------------------------------------------\n");
-        subscriberService.calcTotalTrafficConsumption(subscribers, inputCity());
+        subscriberServiceImpl.calcTotalTrafficConsumption(subscribers, inputCity());
 
         System.out.println("\n-----------------------------------------------\n");
-        subscriberService.findNegativeBalanceSubscribers(subscribers);
+        subscriberServiceImpl.findNegativeBalanceSubscribers(subscribers);
     }
 
     public static Character inputFirstLetter() {

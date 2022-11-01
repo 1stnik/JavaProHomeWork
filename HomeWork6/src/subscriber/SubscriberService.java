@@ -1,78 +1,20 @@
 package subscriber;
 
+public interface SubscriberService {
 
-public class SubscriberService implements SubscriberHandleData{
+    /** a) Exceeding Limit Local Calls */
+    void exceedingLimitLocalCalls(Subscriber[] sbscr); // a) Exceeding Limit Local Calls
 
-    private static final int LOCAL_TALK_TIME_LIMIT = 90;
+    /** b) Intercity Calls Users */
+    void intercityCallsUsers(Subscriber[] sbscr); // b) Intercity Calls Users
 
-    @Override
-    public void exceedingLimitLocalCalls(Subscriber[] sbscr) {
-        for (Subscriber subscriber : sbscr) {
-            if (subscriber.getLocalTalkTime() > LOCAL_TALK_TIME_LIMIT) {
-                System.out.println("Exceeding the limit of local calls: \nID:" + subscriber.getId() + "  " +
-                        subscriber.getSurname() + " " + subscriber.getName() + " " + subscriber.getPatronymic()
-                        + " (" + subscriber.getCity() + ") -"  + " " + subscriber.getPhoneNumber() +
-                        "  Account Number:" + subscriber.getContractNumber()  + "  LocalTalkTime: " +
-                        subscriber.getLocalTalkTime());
-            }
-        }
-    }
+    /** c) Find Subscriber by Surname First Letter */
+    void findSbscrByFirstLetterSurname(Subscriber[] sbscr, Character firstLetter);
+    // c) Find Subscriber by Surname First Letter
 
-    @Override
-    public void intercityCallsUsers(Subscriber[] sbscr) {
-        for (Subscriber subscriber : sbscr) {
-            if (subscriber.getIntercityTalkTime() > 0) {
-                System.out.println("Intercity Calls Users: \nID:" + subscriber.getId() + "  " +
-                        subscriber.getSurname() + " " + subscriber.getName() + " " + subscriber.getPatronymic()
-                        + " (" + subscriber.getCity() + ") -"  + " " + subscriber.getPhoneNumber() +
-                        "  Account Number:" + subscriber.getContractNumber()  + "  Intercity talk time: " +
-                        subscriber.getIntercityTalkTime());
-            }
+    /** d) Calculate Total Traffic Consumption */
+    void calcTotalTrafficConsumption(Subscriber[] sbscr, String inputCity); // d) Calculate Total Traffic Consumption
 
-        }
-    }
-
-    @Override
-    public void findSbscrByFirstLetterSurname(Subscriber[] sbscr, Character firstLetter) {
-        for (Subscriber subscriber : sbscr) {
-            Character surnameFirstLetter = subscriber.getSurname().toUpperCase().toCharArray()[0];
-            if (surnameFirstLetter.equals(firstLetter)) {
-                System.out.println("Found surnames on the letter (" + firstLetter + "):" +
-                        "\nID:" + subscriber.getId() + "  " + subscriber.getSurname() + " " + subscriber.getName() +
-                        " " + subscriber.getPatronymic() + " (" + subscriber.getCity() + ") -"  +
-                        " " + subscriber.getPhoneNumber() + "  Account Number:" + subscriber.getContractNumber() +
-                        "  Account Balance: " + subscriber.getAccountBalance());
-            }
-        }
-    }
-
-    @Override
-    public void calcTotalTrafficConsumption(Subscriber[] sbscr, String inputCity) {
-        double trafficSum = 0;
-        for (Subscriber subscriber : sbscr) {
-            if (subscriber.getCity().equals(inputCity)) {
-                trafficSum += subscriber.getInternetTraffic();
-            }
-        }
-        System.out.printf("Total sum of traffic in %s: %.2f GB", inputCity, trafficSum);
-    }
-
-    @Override
-    public void findNegativeBalanceSubscribers(Subscriber[] sbscr) {
-        int counter = 0;
-        for (Subscriber subscriber : sbscr) {
-            if (subscriber.getAccountBalance() < 0) {
-                counter++;
-                System.out.println("Subscribers with negative balance: \nID:" + subscriber.getId() + "  " +
-                        subscriber.getSurname() + " " + subscriber.getName() + " " + subscriber.getPatronymic()
-                        + " (" + subscriber.getCity() + ") -"  + " " + subscriber.getPhoneNumber() +
-                        "  Account Number:" + subscriber.getContractNumber()  +
-                        "  Account Balance: " + subscriber.getAccountBalance());
-
-            }
-        }
-        System.out.println("Number of subscribers - " + counter);
-    }
-
-
+    /** e) Number of subscribers with negative balance */
+    void findNegativeBalanceSubscribers(Subscriber[] sbscr); // e) Number of subscribers with negative balance
 }
