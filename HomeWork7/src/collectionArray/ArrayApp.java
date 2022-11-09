@@ -2,9 +2,8 @@ package collectionArray;
 
 /**
  * @author Serhii Nikonenko
- * @version 1.0.0
+ * @version 1.0.1
  */
-
 
 public class ArrayApp{
 
@@ -24,6 +23,7 @@ public class ArrayApp{
         System.out.println(dynamicArray.add(-4, "Five")); // incorrect index
         System.out.println(dynamicArray.add(6, "Seven"));
         System.out.println(dynamicArray.add(0, "One"));
+        System.out.println(dynamicArray.add(1, "Two"));
         System.out.println(dynamicArray);
         System.out.println("-------------------------------------------------------------------------------------");
 
@@ -52,6 +52,7 @@ public class ArrayApp{
         System.out.println(dynamicArray.add("BBB")); // add one more value
         System.out.println(dynamicArray.add("HHH")); // add one more value
         System.out.println("----");
+        System.out.println(dynamicArray);
         System.out.println(dynamicArray.delete("BBB"));
         System.out.println(dynamicArray.delete("Seven"));
         System.out.println(dynamicArray);
@@ -67,6 +68,8 @@ public class ArrayApp{
         /** move values to the left */
         System.out.println("Move values to the left");
         System.out.println("* if array has less than 3 free cell - will be added 5 free cell *");
+        dynamicArray.add(10, "JJJ"); // add one more value for example
+        System.out.println(dynamicArray);
         dynamicArray.moveValuesLeft();
         System.out.println(dynamicArray);
     }

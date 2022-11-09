@@ -7,7 +7,7 @@ public class DynamicArray implements DynamicArrayService {
 
     private String[] arrayStr;
     private int capacity;
-    private int freeCellCounter;
+    private int busyCellCounter;
 
 
     public DynamicArray() {
@@ -19,6 +19,7 @@ public class DynamicArray implements DynamicArrayService {
         this.capacity = capacity;
         arrayStr = new String[capacity];
     }
+
 
     @Override
     public String toString() {
@@ -32,6 +33,7 @@ public class DynamicArray implements DynamicArrayService {
     public boolean add(int index, String value) {
         if (index < 0 || index > arrayStr.length - 1) return false;
         else if (index >= 0 && index <= (arrayStr.length - 1)) {
+            addOneCell(index);
             arrayStr[index] = value;
         }
         return true;
@@ -39,7 +41,7 @@ public class DynamicArray implements DynamicArrayService {
 
     @Override
     public boolean add(String value) {
-        if (value.isEmpty()) return false;
+        if (value == null) return false;
         getExtendedArray();
         for (int i = 0; i < arrayStr.length; ) {
             if (arrayStr[i] != null) i++;
@@ -51,23 +53,34 @@ public class DynamicArray implements DynamicArrayService {
         return true;
     }
 
-    public int countFreeCells(String[] array) {
-        freeCellCounter = 0;
-        for (int j = 0; j < array.length - 1; j++) {
-            if (array[j] == null) freeCellCounter++;
+    public int countBusyCells(String[] arrayStr) {
+        busyCellCounter = 0;
+        for (int i = 0; i < arrayStr.length; i++) {
+            if (arrayStr[i] != null) busyCellCounter++;
         }
-        return freeCellCounter;
+        return busyCellCounter;
+    }
+
+    public String[] addOneCell(int index) {
+        String[] newArray;
+        newArray = new String[arrayStr.length + 1];
+        System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
+        arrayStr = new String[newArray.length];
+        System.arraycopy(newArray, 0, arrayStr, 0, newArray.length);
+        System.arraycopy(newArray, index, arrayStr, index + 1, arrayStr.length - (index + 1));
+        countBusyCells(arrayStr);
+        return arrayStr;
     }
 
     public String[] getExtendedArray() {
-        countFreeCells(arrayStr);
+        countBusyCells(arrayStr);
         String[] newArray;
-        if (freeCellCounter < 3) {
+        if (busyCellCounter > (arrayStr.length - 3)) {
             newArray = new String[arrayStr.length + 5];
             System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
             arrayStr = new String[newArray.length];
             System.arraycopy(newArray, 0, arrayStr, 0, newArray.length);
-            countFreeCells(arrayStr);
+            countBusyCells(arrayStr);
         }
         return arrayStr;
     }
@@ -76,7 +89,8 @@ public class DynamicArray implements DynamicArrayService {
     public boolean delete(int index) {
         if (index < 0 || index > arrayStr.length - 1) return false;
         else if (index >= 0 && index <= (arrayStr.length - 1)) {
-            arrayStr[index] = null;
+//            arrayStr[index] = null;
+            deleteOneCell(index);
         }
         return true;
     }
@@ -86,11 +100,21 @@ public class DynamicArray implements DynamicArrayService {
         boolean found = false;
         for (int i = 0; i < arrayStr.length; i++) {
             if (value.equals(arrayStr[i])) {
-                arrayStr[i] = null;
+                int index = i;
+                deleteOneCell(index);
                 found = true;
             }
         }
         return found;
+    }
+
+    public String[] deleteOneCell(int index) {
+        String[] newArray;
+        newArray = new String[arrayStr.length];
+        System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
+        System.arraycopy(newArray, index + 1, arrayStr, index, arrayStr.length - (index + 1));
+        arrayStr[arrayStr.length -1] = null;
+        return arrayStr;
     }
 
     @Override
@@ -104,7 +128,7 @@ public class DynamicArray implements DynamicArrayService {
     public void moveValuesLeft() {
         String[] newArray = new String[arrayStr.length];
         System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
-        arrayStr = new String[newArray.length - countFreeCells(newArray)];
+        arrayStr = new String[newArray.length - (newArray.length - countBusyCells(newArray))];
         for (int j = 0; j < newArray.length; j++) {
             if (newArray[j] != null) {
                 add(newArray[j]);
