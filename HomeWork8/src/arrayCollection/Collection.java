@@ -1,0 +1,24 @@
+package arrayCollection;
+
+public interface Collection {
+
+//    Реализовать простую коллекцию для String на базе массива используя интерфейс.
+
+//    interface arrayCollection.Collection:
+
+    boolean add(String o);
+
+    boolean add(int index, String o);
+
+    boolean delete (String o);
+
+    String get(int index);
+
+    boolean contain(String o);
+
+    boolean equals (Collection str);
+
+    boolean clear();
+
+    int size(); // - количество элементов которые добавили
+}
