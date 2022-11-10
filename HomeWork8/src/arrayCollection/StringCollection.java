@@ -129,10 +129,8 @@ public class StringCollection implements Collection {
 
     @Override
     public boolean clear() {
-        for (int i = 0; i < arrayStr.length; i++) {
-            arrayStr[i] = null;
-            size = 0;
-        }
+        int length = arrayStr.length;
+        arrayStr = new String[length];
         return true;
     }
 
@@ -142,7 +140,7 @@ public class StringCollection implements Collection {
     }
 
 
-    public int countBusyCells(String[] arrayStr) {
+    private int countBusyCells(String[] arrayStr) {
         busyCellCounter = 0;
         for (int i = 0; i < arrayStr.length; i++) {
             if (arrayStr[i] != null) busyCellCounter++;
@@ -150,7 +148,7 @@ public class StringCollection implements Collection {
         return busyCellCounter;
     }
 
-    public String[] addOneCell(int index) {
+    private String[] addOneCell(int index) {
         String[] newArray;
         newArray = new String[arrayStr.length + 1];
         System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
@@ -161,7 +159,7 @@ public class StringCollection implements Collection {
         return arrayStr;
     }
 
-    public String[] deleteOneCell(int index) {
+    private String[] deleteOneCell(int index) {
         String[] newArray;
         newArray = new String[arrayStr.length];
         System.arraycopy(arrayStr, 0, newArray, 0, arrayStr.length);
@@ -170,7 +168,7 @@ public class StringCollection implements Collection {
         return arrayStr;
     }
 
-    public String[] getExtendedArray() {
+    private String[] getExtendedArray() {
         countBusyCells(arrayStr);
         String[] newArray;
         if (busyCellCounter > (arrayStr.length - 3)) {
