@@ -10,7 +10,6 @@ import java.util.HashSet;
 
 public class AppStart {
 
-
     public static void main(String[] args) {
 
         StringCollection stringCollection = new StringCollection(6);
@@ -87,8 +86,9 @@ public class AppStart {
 
         System.out.print("With iterator: ");
         while (stringCollection.hasNext()) {
-            System.out.print(stringCollection.next() + ", ");
+            System.out.println(stringCollection.next());
         }
+        System.out.println(stringCollection);
 
     }
 

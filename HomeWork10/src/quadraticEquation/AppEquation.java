@@ -15,8 +15,6 @@ public class AppEquation {
     public static double x1;
     public static double x2;
 
-
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -37,5 +35,7 @@ public class AppEquation {
             x2 = (-b - d) / (2 * a);
             System.out.printf("x1 = %.5f \nx2 = %.5f", x1, x2);
         }
+
+
     }
 }
