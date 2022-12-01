@@ -33,14 +33,8 @@ public class MyApp {
     protected static String getNumber() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your number: ");
-        String number = null;
-        if (!sc.hasNextLine()) {
-            System.out.print("It's not a number! Try again!");
-            sc.close();
-        } else {
-            number = sc.nextLine();
-            sc.close();
-        }
+        String number = sc.nextLine();
+        sc.close();
         return number;
     }
 
