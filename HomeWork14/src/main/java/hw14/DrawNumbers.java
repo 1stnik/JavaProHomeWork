@@ -5,16 +5,14 @@ import java.util.List;
 
 public class DrawNumbers {
 
-    public void getArray(int inNumber) {
-
-        StringBuilder sb = new StringBuilder();
-        while(inNumber > 0) {
-            sb.insert(0, inNumber % 10);
-            inNumber = inNumber / 10;
+    public void getArray(String number) {
+        List<String> stringList = Arrays.stream(number.split("")).toList();
+        try {
+            stringList.stream().map(Integer::parseInt).toList();
+            getPixels(stringList);
+        } catch (NumberFormatException e) {
+            System.out.println("It's not a number!");
         }
-        String inStr = sb.toString();
-        List<String> stringList = Arrays.asList(inStr.split(""));
-        getPixels(stringList);
     }
 
 
