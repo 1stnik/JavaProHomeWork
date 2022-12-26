@@ -8,6 +8,8 @@ public interface FileService {
 
     List<String> getFilesPath(Path path);
 
+    String getNewFilePath(File fileDir, String name);
+
     String readFromFile(String filePath);
 
     void writeToFile(File file, String newFileString, boolean append);

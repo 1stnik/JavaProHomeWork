@@ -38,6 +38,18 @@ public class FileServiceImpl implements FileService {
         return getValidFilesPath(filesPath);
     }
 
+    /**
+     * method create new file path
+     *
+     * @param fileDir - file directory
+     * @param name    - new file name
+     * @return - new file path as string
+     */
+    @Override
+    public String getNewFilePath(File fileDir, String name) {
+        return fileDir.getPath().concat(File.separator).concat(name);
+    }
+
 
     /**
      * method gets the list of all file names in directory (path) and creates list of all file names,
@@ -75,7 +87,6 @@ public class FileServiceImpl implements FileService {
             stream.forEach(s -> contentBuilder.append(s).append("\n"));
         } catch (IOException e) {
             System.out.println("Can't read data from file...");
-            e.printStackTrace();
         }
         return contentBuilder.toString();
     }
@@ -125,10 +136,10 @@ public class FileServiceImpl implements FileService {
     /**
      * method saves conversion result to log file
      *
-     * @param logFile - log file
-     * @param oldName - name of file before conversion
-     * @param newName - name of file after conversion
-     * @param duration - time of conversion
+     * @param logFile       - log file
+     * @param oldName       - name of file before conversion
+     * @param newName       - name of file after conversion
+     * @param duration      - time of conversion
      * @param pathToNewFile - path to file after conversion
      */
     @Override

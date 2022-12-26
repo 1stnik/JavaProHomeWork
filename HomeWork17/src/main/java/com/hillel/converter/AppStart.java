@@ -2,7 +2,7 @@ package com.hillel.converter;
 
 /**
  * @author Serhii Nikonenko
- * @version 2.0.1
+ * @version 2.0.2
  */
 
 import com.hillel.converter.services.FileConverter;
@@ -10,6 +10,7 @@ import com.hillel.converter.services.FileService;
 import com.hillel.converter.services.impl.FileServiceImpl;
 import com.hillel.converter.services.impl.JsonFileConverterImpl;
 import com.hillel.converter.services.impl.YamlFileConverterImpl;
+
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -20,6 +21,8 @@ public class AppStart {
 
     private final static String JSON = "json";
     private final static String YAML = "yaml";
+    public static String convertError = "";
+
 
     public static void main(String[] args) {
 
@@ -35,9 +38,8 @@ public class AppStart {
         FileService fs = new FileServiceImpl();
         List<String> sortedFiles = fs.getFilesPath(path);
 
-        File sortedFileDir = new File(path.toString().concat(File.separator).concat("converted"));
-        sortedFileDir.mkdir();
-
+        File convertedFileDir = new File(path.toString().concat(File.separator).concat("converted"));
+        convertedFileDir.mkdir();
 
 
         for (String name : sortedFiles) {
@@ -46,16 +48,17 @@ public class AppStart {
             long start = System.currentTimeMillis();
             long stop;
             long duration;
-            File logFile = new File(sortedFileDir.getPath().concat(File.separator).concat("result.log"));
+            String pathToNewFile;
+            File logFile = new File(fs.getNewFilePath(convertedFileDir, "result.log"));
 
             if (name.endsWith(JSON)) {
                 FileConverter jfc = new JsonFileConverterImpl();
                 String str = jfc.fileConvert(fs.readFromFile(pathToFile));
+                String newName = convertError.concat(name.replaceAll("\\.json", "\\.yaml"));
 
-                String newName = name.replaceAll("\\.json", "\\.yaml");
-                String pathToNewFile = sortedFileDir.getPath().concat(File.separator).concat(newName);
-                File newYamlFile = new File(pathToNewFile);
-                fs.writeToFile(newYamlFile, str, false);
+                pathToNewFile = fs.getNewFilePath(convertedFileDir, newName);
+                File newFile = new File(pathToNewFile);
+                fs.writeToFile(newFile, str, false);
                 stop = System.currentTimeMillis();
                 duration = stop - start;
                 fs.saveResult(logFile, name, newName, duration, pathToNewFile);
@@ -63,11 +66,11 @@ public class AppStart {
             } else if (name.endsWith(YAML)) {
                 FileConverter yfc = new YamlFileConverterImpl();
                 String str = yfc.fileConvert(fs.readFromFile(pathToFile));
+                String newName = convertError.concat(name.replaceAll("\\.yaml", "\\.json"));
 
-                String newName = name.replaceAll("\\.yaml", "\\.json");
-                String pathToNewFile = sortedFileDir.getPath().concat(File.separator).concat(newName);
-                File newJsonFile = new File(pathToNewFile);
-                fs.writeToFile(newJsonFile, str, false);
+                pathToNewFile = fs.getNewFilePath(convertedFileDir, newName);
+                File newFile = new File(fs.getNewFilePath(convertedFileDir, newName));
+                fs.writeToFile(newFile, str, false);
                 stop = System.currentTimeMillis();
                 duration = stop - start;
                 fs.saveResult(logFile, name, newName, duration, pathToNewFile);

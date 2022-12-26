@@ -1,11 +1,9 @@
 package com.hillel.converter.services.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hillel.converter.AppStart;
 import com.hillel.converter.services.FileConverter;
-import com.hillel.converter.services.exceptions.JsonConversionError;
 import org.yaml.snakeyaml.Yaml;
-
 import java.util.Map;
 
 public class JsonFileConverterImpl implements FileConverter {
@@ -17,17 +15,20 @@ public class JsonFileConverterImpl implements FileConverter {
      * @return - string data for new yaml file
      */
     @Override
-    public String fileConvert(String data) throws JsonConversionError {
+    public String fileConvert(String data) {
 
         try {
             ObjectMapper mapper = new ObjectMapper();
             Map[] map = mapper.readValue(data, Map[].class);
             Yaml yaml = new Yaml();
+            AppStart.convertError = "";
             return yaml.dump(map);
 
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
+            data = "";
             System.out.println("Can't convert Json file to Yaml!");
-            throw new JsonConversionError();
+            AppStart.convertError = "ERROR_CONVERSION_";
         }
+        return data;
     }
 }
