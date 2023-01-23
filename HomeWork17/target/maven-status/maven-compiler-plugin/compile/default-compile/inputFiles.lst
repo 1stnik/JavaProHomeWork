@@ -2,8 +2,6 @@ D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\impl\JsonFileConverterImpl.java
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\exceptions\FileSizeException.java
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\FileConverter.java
-D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\exceptions\JsonConversionError.java
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\FileService.java
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\AppStart.java
-D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\exceptions\YamlConversionError.java
 D:\Hillel\Projects\JavaProHomeWork\HomeWork17\src\main\java\com\hillel\converter\services\impl\FileServiceImpl.java

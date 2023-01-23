@@ -1,9 +1,7 @@
+com\hillel\converter\services\impl\YamlFileConverterImpl.class
 com\hillel\converter\services\exceptions\FileSizeException.class
 com\hillel\converter\services\impl\JsonFileConverterImpl.class
-com\hillel\converter\services\exceptions\JsonConversionError.class
 com\hillel\converter\AppStart.class
-com\hillel\converter\services\exceptions\YamlConversionError.class
-com\hillel\converter\services\impl\YamlFileConverterImpl.class
 com\hillel\converter\services\FileService.class
 com\hillel\converter\services\FileConverter.class
 com\hillel\converter\services\impl\FileServiceImpl.class
